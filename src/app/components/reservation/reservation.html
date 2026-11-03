@@ -1,0 +1,81 @@
+<div class="container">
+
+  <h1>Restaurant Reservations</h1>
+
+  <div class="form-card">
+
+    <h2>New Reservation</h2>
+
+    <form (ngSubmit)="addReservation()">
+
+      <label>Customer Name</label>
+
+      <input
+        type="text"
+        name="customerName"
+        [(ngModel)]="customerName"
+        placeholder="Enter customer name"
+        required
+      >
+
+      <label>Number of Guests</label>
+
+      <input
+        type="number"
+        name="guests"
+        [(ngModel)]="guests"
+        min="1"
+        required
+      >
+
+      <label>Reservation Date</label>
+
+      <input
+        type="date"
+        name="date"
+        [(ngModel)]="date"
+        required
+      >
+
+      <label>Reservation Time</label>
+
+      <input
+        type="time"
+        name="time"
+        [(ngModel)]="time"
+        required
+      >
+
+      <button type="submit">Add Reservation</button>
+
+    </form>
+
+  </div>
+
+  <h2>Reservation List</h2>
+
+  @for (item of reservations; track item.id) {
+
+    <div class="reservation-card">
+
+      <h3>{{ item.name }}</h3>
+
+      <p>Guests: {{ item.guests }}</p>
+
+      <p>Date: {{ item.date }}</p>
+
+      <p>Time: {{ item.time }}</p>
+
+      <button (click)="deleteReservation(item.id)">
+        Delete
+      </button>
+
+    </div>
+
+  } @empty {
+
+    <p>No reservations available.</p>
+
+  }
+
+</div>
